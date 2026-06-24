@@ -6,17 +6,19 @@ public class ListaMunicipios {
     public static void main(String[] args) {
         double idhSelecionado;
         Scanner scanner = new Scanner(System.in);
+        String[] dados;
 
         ArrayList<Municipio> municipios = new ArrayList<>();
         while (true) {
             Municipio municipio = new Municipio("", 0, 0.0f, 0.0);
             System.out.println("Digite o nome do municipio, população, área e idh: ");
-            municipio.setNome(scanner.nextLine());
+            dados = scanner.nextLine().split(" ");
+            municipio.setNome(dados[0]);
             if(municipio.getNome().toLowerCase().equals("xxx")) break;
-            municipio.setPopulacao(scanner.nextInt());
-            municipio.setArea(scanner.nextFloat());
-            municipio.setIdh(scanner.nextDouble());
-            scanner.nextLine();
+            municipio.setPopulacao(Integer.parseInt(dados[1]));
+            municipio.setArea(Float.parseFloat(dados[2]));
+            municipio.setIdh(Double.parseDouble(dados[3]));
+  
             municipios.add(municipio);
             System.out.println("Quantidade de municipios: " + municipios.size());
            

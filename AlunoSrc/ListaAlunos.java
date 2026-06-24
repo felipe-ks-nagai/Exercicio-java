@@ -7,35 +7,19 @@ public class ListaAlunos {
     public static void main(String[] args) {
         LinkedList<Aluno> alunos = new LinkedList<>();
         String siglaSelecionada = "";
+        String[] dados;
         Scanner scanner = new Scanner(System.in);
 
         while(true){
             System.out.println("Digite o RA, sigla, nota e falta: ");
             Aluno aluno = new Aluno("", "", 0.0f, 0);
-            aluno.setRA(scanner.nextLine());
+            dados = scanner.nextLine().split(" ");
+            aluno.setRA(dados[0]);
             if(aluno.getRA().toLowerCase().equals("xxx")) break;
-            aluno.setSigla(scanner.nextLine());
-            while(true){
-                aluno.setNota(scanner.nextFloat());
-                if(aluno.getNota() < 0 || aluno.getNota() > 10) {
-                    System.out.println("Nota inválida, tem que ser mais que 0 e menos que 10");
-                    scanner.nextLine();
-                }else{
-                    break;
-                }
-            }
-            while(true){
-                aluno.setFalta(scanner.nextInt());
-                if(aluno.getFalta() < 0) {
-                    System.out.println("Falta inválida");
-                    scanner.nextLine();
-                }else{
-                    break;
-                }
-            }
-            scanner.nextLine();
+            aluno.setSigla(dados[1]);
+            aluno.setNota(Float.parseFloat(dados[2]));
+            aluno.setFalta(Integer.parseInt(dados[3]));
             alunos.add(aluno);
-            
         }
         System.out.println("Quantidade de alunos: " + alunos.size());
         System.out.println("Lista de alunos: ");
